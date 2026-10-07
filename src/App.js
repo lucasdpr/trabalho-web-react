@@ -7,7 +7,8 @@ import Apresentacao from './pages/Apresentacao';
 import Cadastro from './pages/Cadastro';
 
 function App() {
-  const clientId = "688882610281-60007selpnj3ulv66gfg6manilek822t.apps.googleusercontent.com";
+  const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID ||
+    "688882610281-60007selpnj3ulv66gfg6manilek822t.apps.googleusercontent.com";
 
   // Estilos injetados diretamente (CSS-in-JS)
   const styles = {

@@ -20,6 +20,11 @@ function Home() {
     localStorage.setItem('user', JSON.stringify(decoded));
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem('user');
+    setUser(null);
+  };
+
   return (
     <div>
       <h1 style={{ color: '#38bdf8', fontSize: '2rem', marginBottom: '20px' }}>
@@ -63,6 +68,12 @@ function Home() {
               }}
             >
               Ir para o Cadastro
+            </button>
+            <button
+              onClick={handleLogout}
+              style={{ display: 'block', margin: '12px auto 0', background: 'none', border: 'none', color: '#94a3b8', textDecoration: 'underline', cursor: 'pointer' }}
+            >
+              Sair
             </button>
           </div>
         )}

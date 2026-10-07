@@ -14,14 +14,16 @@ function Cadastro() {
   useEffect(() => {
     let savedUser = null;
     try { savedUser = JSON.parse(localStorage.getItem('user')); } catch { /* dado corrompido */ }
-    if (savedUser) {
-      setFormData(prev => ({
-        ...prev,
-        nome: savedUser.name,
-        email: savedUser.email
-      }));
+    if (!savedUser) {
+      navigate('/');
+      return;
     }
-  }, []);
+    setFormData(prev => ({
+      ...prev,
+      nome: savedUser.name,
+      email: savedUser.email
+    }));
+  }, [navigate]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
