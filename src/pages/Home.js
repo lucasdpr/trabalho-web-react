@@ -27,19 +27,11 @@ function Home() {
 
   return (
     <div>
-      <h1 style={{ color: '#38bdf8', fontSize: '2rem', marginBottom: '20px' }}>
-        {user ? `Bem-vindo, ${user.given_name}!` : 'Entrada do Sistema'}
-      </h1>
-      
-      <div style={{ 
-        display: 'flex', 
-        flexDirection: 'column',
-        alignItems: 'center', 
-        marginBottom: '30px'
-      }}>
+      <h1>{user ? `Bem-vindo, ${user.given_name}!` : 'Entrada do Sistema'}</h1>
+
+      <div className="stack">
         {!user ? (
-          /* Se NÃO estiver logado, mostra o botão do Google */
-          <GoogleLogin 
+          <GoogleLogin
             onSuccess={handleSuccess}
             onError={() => console.log('Falha na autenticação')}
             theme="filled_blue"
@@ -47,50 +39,18 @@ function Home() {
             size="large"
           />
         ) : (
-          /* Se JÁ estiver logado, mostra a FOTO que o professor pediu */
-          <div style={{ textAlign: 'center' }}>
-            <img 
-              src={user.picture} 
-              alt="Foto do usuário" 
-              style={{ borderRadius: '50%', width: '80px', border: '3px solid #38bdf8', marginBottom: '10px' }}
-            />
-            <p style={{ color: '#f8fafc' }}>{user.email}</p>
-            <button 
-              onClick={() => navigate('/cadastro')}
-              style={{
-                backgroundColor: '#10b981', // Verde para indicar sucesso/prosseguir
-                color: 'white',
-                border: 'none',
-                padding: '10px 20px',
-                borderRadius: '8px',
-                cursor: 'pointer',
-                marginTop: '10px'
-              }}
-            >
+          <>
+            <img className="avatar" src={user.picture} alt="Foto do usuário" referrerPolicy="no-referrer" />
+            <p className="email">{user.email}</p>
+            <button className="btn btn-ok" onClick={() => navigate('/cadastro')}>
               Ir para o Cadastro
             </button>
-            <button
-              onClick={handleLogout}
-              style={{ display: 'block', margin: '12px auto 0', background: 'none', border: 'none', color: '#94a3b8', textDecoration: 'underline', cursor: 'pointer' }}
-            >
-              Sair
-            </button>
-          </div>
+            <button className="link" onClick={handleLogout}>Sair</button>
+          </>
         )}
       </div>
 
-      <button 
-        onClick={() => navigate('/dupla')}
-        style={{
-          width: '100%',
-          padding: '14px',
-          borderRadius: '10px',
-          border: '1px solid #475569',
-          backgroundColor: '#334155',
-          color: '#f8fafc',
-          cursor: 'pointer'
-        }}
-      >
+      <button className="btn btn-ghost" onClick={() => navigate('/dupla')}>
         Ver Informações do Aluno
       </button>
     </div>
