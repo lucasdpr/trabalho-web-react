@@ -12,7 +12,8 @@ function Cadastro() {
   });
 
   useEffect(() => {
-    const savedUser = JSON.parse(localStorage.getItem('user'));
+    let savedUser = null;
+    try { savedUser = JSON.parse(localStorage.getItem('user')); } catch { /* dado corrompido */ }
     if (savedUser) {
       setFormData(prev => ({
         ...prev,

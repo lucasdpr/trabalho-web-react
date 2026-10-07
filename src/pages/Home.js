@@ -5,13 +5,14 @@ import { jwtDecode } from 'jwt-decode'; // Importante para ler os dados da conta
 
 function Home() {
   const navigate = useNavigate();
-  const [user, setUser] = useState(null); // Estado para guardar o usuário logado
+  const [user, setUser] = useState(() => {
+    // Restaura a sessão ao voltar para a Home
+    try { return JSON.parse(localStorage.getItem('user')); } catch { return null; }
+  });
 
   const handleSuccess = (credentialResponse) => {
     // 1. Descodifica o token para pegar foto e nome
     const decoded = jwtDecode(credentialResponse.credential);
-    console.log(decoded);
-    
     // 2. Salva no estado para mostrar na tela agora
     setUser(decoded);
     
